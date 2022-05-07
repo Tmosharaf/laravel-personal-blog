@@ -1,6 +1,9 @@
-@extends('layouts.admin-layout')
 
+<x-admin-layout>
 
-@section('content')
-hello
-@endsection
+    <x-slot name="content">
+        @include('layouts.navigation')
+
+    </x-slot>
+
+</x-admin-layout>

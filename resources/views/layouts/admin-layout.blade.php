@@ -23,7 +23,8 @@
     <div class="flex flex-no-wrap">
         <!-- Sidebar starts -->
         <!-- Remove class [ hidden ] and replace [ sm:flex ] with [ flex ] -->
-        <div style="min-height: 416px" class="w-64 absolute sm:relative  shadow md:h-full flex-col justify-between hidden sm:flex bg-gray-50 rounded dark:bg-gray-800">
+        <div style="min-height: 416px"
+            class="w-64 absolute sm:relative  shadow md:h-full flex-col justify-between hidden sm:flex bg-gray-50 rounded dark:bg-gray-800">
 
             @include('components.admin.sidebar-links')
         </div>
@@ -31,28 +32,10 @@
         <!-- Remove class [ h-64 ] when adding a card block -->
         <div class="container mx-auto py-10 h-64 md:w-4/5 w-11/12 px-6 bg-slate-50">
             @yield('content')
+            {{ $content }}
         </div>
     </div>
 
-<script>
-
-var sideBar = document.getElementById("mobile-nav");
-var openSidebar = document.getElementById("openSideBar");
-var closeSidebar = document.getElementById("closeSideBar");
-sideBar.style.transform = "translateX(-260px)";
-
-function sidebarHandler(flag) {
-    if (flag) {
-        sideBar.style.transform = "translateX(0px)";
-        openSidebar.classList.add("hidden");
-        closeSidebar.classList.remove("hidden");
-    } else {
-        sideBar.style.transform = "translateX(-260px)";
-        closeSidebar.classList.add("hidden");
-        openSidebar.classList.remove("hidden");
-    }
-}
-</script>
 </body>
 
 </html>

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,5 +21,8 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard.home');
 })->middleware(['auth'])->name('dashboard');
+
+Route::resource('categories', CategoryController::class)->middleware(['auth']);
+
 
 require __DIR__.'/auth.php';
