@@ -27,10 +27,11 @@
             class="w-64 absolute sm:relative  shadow md:h-full flex-col justify-between hidden sm:flex bg-gray-50 rounded dark:bg-gray-800">
 
             @include('components.admin.sidebar-links')
+
         </div>
         <!-- Sidebar ends -->
         <!-- Remove class [ h-64 ] when adding a card block -->
-        <div class="container mx-auto py-10 h-64 md:w-4/5 w-11/12 px-6 bg-slate-50">
+        <div class="container mx-auto py-10 h-64 md:w-4/5 w-11/12 px-6 ">
             @yield('content')
             {{ $content }}
         </div>

@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Http\Requests\StoreCategoryRequest;
-use App\Http\Requests\UpdateCategoryRequest;
+use Illuminate\Support\Str;
+use App\Http\Requests\CategoryRequest;
+
+use function Ramsey\Uuid\v1;
 
 class CategoryController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +21,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('dashboard.category.index');
+        $categories = Category::paginate(10);
+        return view('dashboard.category.index', compact('categories'));
+
     }
 
     /**
@@ -25,7 +33,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.category.create');
     }
 
     /**
@@ -34,21 +42,22 @@ class CategoryController extends Controller
      * @param  \App\Http\Requests\StoreCategoryRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreCategoryRequest $request)
+    public function store(CategoryRequest $request)
     {
-        //
+        $slug = Str::slug($request->name, '-');
+
+        if (Category::where('slug', $slug)->count() !== 0) {
+            date_default_timezone_set('Asia/Dhaka');
+            $slug = $slug . '-' . date('dh-is');
+        }
+
+        $validated = $request->validated();
+
+        Category::create( $validated + ['slug'  => $slug] );
+
+        return redirect()->route('categories.index')->with('message', 'Category created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Category $category)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -58,7 +67,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('dashboard.category.edit', compact('category'));
     }
 
     /**
@@ -68,9 +77,20 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
-        //
+        $slug = Str::slug($request->name, '-');
+
+        if (Category::where('slug', $slug)->count() !== 0) {
+            date_default_timezone_set('Asia/Dhaka');
+            $slug = $slug . '-' . date('dh-is');
+        }
+
+
+
+        $validated = $request->validated();
+        $category->update($validated + [ 'slug' => $slug ]);
+        return back()->with('message', 'Category updated successfully');
     }
 
     /**
@@ -81,6 +101,8 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        return back()->with('message', 'Category deleted successfully');
     }
 }
