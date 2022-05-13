@@ -1,13 +1,11 @@
 <x-admin-layout>
 
     <x-slot name="content">
-        <x-link href="{{ route('categories.index') }}" class='text-white inline-block bg-blue-300'>Back </x-link>
         <div class="block p-6 rounded-lg shadow-lg bg-white max-w-sm mx-auto">
-            <form method="POST" action="{{ route('categories.update', $category) }}">
+            <form method="POST" action="{{ route('categories.store') }}">
                 @csrf
-                @method("PUT")
                 <div class="form-group mb-6">
-                    <input name="name" type="text" value="{{ $category->name }}"
+                    <input name="name" type="text"
                         class="form-control block
                   w-full
                   px-3
@@ -47,11 +45,9 @@
 
 
             @error('name')
-                <x-crud-alert message="{{ $errors->first('name') }}" status="danger" />
+
+            <x-crud-alert message="{{ $errors->first('name') }}" status="danger"/>
             @enderror
-            @if (session('message'))
-                <x-crud-alert message="{{ session('message') }}" status="success" />
-            @endif
         </div>
     </x-slot>
 

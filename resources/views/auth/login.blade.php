@@ -51,6 +51,7 @@
                     {{ __('Log in') }}
                 </x-button>
             </div>
+            <x-link class="mt-2 inline-block" href="login-devs">Login For Dev </x-link>
         </form>
     </x-auth-card>
 </x-guest-layout>
