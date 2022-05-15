@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\Category;
+use Illuminate\Auth\Events\Validated;
+use Illuminate\Database\Eloquent\Collection;
 
 class PostController extends Controller
 {
@@ -15,7 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(5);
         return view('dashboard.post.index', compact('posts'));
     }
 
@@ -26,7 +29,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::pluck('name', 'id');
+        return view('dashboard.post.create', compact('categories'));
     }
 
     /**
@@ -37,7 +41,24 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        //
+        //for blog thumbnail
+        if($request->hasFile('thumbnail')) {
+            $thumbnail = $request->file('thumbnail');
+            $thumbnail_name = time() . '-' . $thumbnail->getClientOriginalName();
+            $thumbnail->move(public_path('images/blog/'), $thumbnail_name);
+        } else {
+            $thumbnail_name = 'default.jpg';
+        }
+
+        Post::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'categories_id' => $request->category,
+            'thumbnail' => $thumbnail_name,
+            'is_featured' => $request->is_featured,
+        ]);
+
+        return redirect()->route('post.index')->with('message', 'Post created successfully');
     }
 
     /**

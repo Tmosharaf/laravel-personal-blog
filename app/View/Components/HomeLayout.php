@@ -23,6 +23,6 @@ class HomeLayout extends Component
      */
     public function render()
     {
-        return view('components.home-layout');
+        return view('components.home');
     }
 }

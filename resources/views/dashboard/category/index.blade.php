@@ -33,7 +33,7 @@
                         @forelse ($categories as $category)
 
                         <tr class="border-b border-opacity-20 border-coolGray-700 bg-coolGray-900 text-center">
-                            <td class="p-3">{{ $category->id }}</td>
+                            <td class="p-3">{{ $categories->firstItem() + $loop->index }}</td>
                             <td class="p-3">{{ $category->name }}</td>
                             <td class="p-3">{{ $category->slug }}</td>
                             <td class="p-3"><x-link class="bg-green-400" href="{{ route('categories.edit', $category) }}">Edit</x-link></td>
