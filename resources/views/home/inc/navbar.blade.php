@@ -4,7 +4,7 @@
             <div class="lg:flex lg:items-center">
                 <div class="flex items-center justify-between">
                     <div>
-                        <a class="text-2xl font-bold text-gray-800 transition-colors duration-200 transform dark:text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300" href="#">Brand</a>
+                        <a class="text-2xl font-bold text-gray-800 transition-colors duration-200 transform dark:text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300" href="{{ url('/') }}">Brand</a>
                     </div>
 
                     <!-- Mobile menu button -->
@@ -22,7 +22,7 @@
                     <a href="#" class="mt-2 transition-colors duration-200 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200">downloads</a>
                     <a href="#" class="mt-2 transition-colors duration-200 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200">docs</a>
                     <a href="#" class="mt-2 transition-colors duration-200 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200">support</a>
-                    <a href="#" class="mt-2 transition-colors duration-200 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200">blog</a>
+                    <a href="{{ route('blogs.index') }}" class="mt-2 transition-colors duration-200 transform lg:mt-0 lg:mx-4 hover:text-gray-900 dark:hover:text-gray-200">blog</a>
 
                     <div class="relative mt-4 lg:mt-0 lg:mx-4">
                         <span class="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -31,8 +31,9 @@
                             </svg>
                         </span>
 
-                        <form action="">
-                            <input type="text" class="w-full py-1 pl-10 pr-4 text-gray-700 placeholder-gray-600 bg-white border-b border-gray-600 dark:placeholder-gray-300 dark:focus:border-gray-300 lg:w-56 lg:border-transparent dark:bg-gray-800 dark:text-gray-300 focus:outline-none focus:border-gray-600" placeholder="Search">
+                        <form action="{{ route('search.blog') }}" method="get">
+                            <input name="search" type="text" class="w-full py-1 pl-10 pr-4 text-gray-700 placeholder-gray-600 bg-white border-b border-gray-600 dark:placeholder-gray-300 dark:focus:border-gray-300 lg:w-56 lg:border-transparent dark:bg-gray-800 dark:text-gray-300 focus:outline-none focus:border-gray-600" placeholder="Search">
+                            <button type="submit">Go</button>
                         </form>
                     </div>
                 </div>

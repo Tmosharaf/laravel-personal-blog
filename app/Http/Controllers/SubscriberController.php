@@ -17,7 +17,7 @@ class SubscriberController extends Controller
     public function __invoke(Request $request)
     {
         $validated = $request->validate([
-            'email' =>  'required|unique:subscribers,email|email'
+            'subscriberEmail' =>  'required|unique:subscribers,subscriberEmail|email'
         ]);
         Subscriber::create($validated);
 

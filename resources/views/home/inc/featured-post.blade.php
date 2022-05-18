@@ -6,13 +6,13 @@
         <div class="p-6">
             <div>
                 <span class="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">{{ $featured_post->category->name }}</span>
-                <a href="#" class="block mt-2 text-2xl font-semibold text-gray-800 transition-colors duration-200 transform dark:text-white hover:text-gray-600 hover:underline">{{ $featured_post->title }}</a>
+                <a href="{{ url('blogs/'.$featured_post->id) }}" class="block mt-2 text-2xl font-semibold text-gray-800 transition-colors duration-200 transform dark:text-white hover:text-gray-600 hover:underline">{{ $featured_post->title }}</a>
                 <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ Str::limit($featured_post->description, 400, '...') }}</p>
             </div>
 
             <div class="mt-4">
                 <div class="flex items-center flex-wrap">
-                    <a class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0" href="#">Read More
+                    <a href="{{ url('blogs/'.$featured_post->id) }}" class="text-indigo-500 inline-flex items-center md:mb-2 lg:mb-0" href="#">Read More
                       <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M5 12h14"></path>
                         <path d="M12 5l7 7-7 7"></path>
