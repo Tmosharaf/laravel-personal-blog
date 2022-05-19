@@ -28,6 +28,8 @@ Route::get('blogs/', [BlogController::class, 'index'])->name('blogs.index');
 Route::get('blogs/{id}', [BlogController::class, 'singleBlog'])->name('blogs.single');
 
 // Blog Comment
+Route::resource('comment', CommentController::class)->except('show', 'edit', 'update');
+Route::get('/comment', [CommentController::class, 'index'])->name('comment.index');
 Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
 
 Route::post('subscribe', SubscriberController::class)->name('subscribe.store');

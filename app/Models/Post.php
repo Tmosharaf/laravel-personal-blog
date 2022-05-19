@@ -15,6 +15,7 @@ class Post extends Model
         'description',
         'categories_id',
         'thumbnail',
+        'view_count',
         'is_featured',
     ];
 

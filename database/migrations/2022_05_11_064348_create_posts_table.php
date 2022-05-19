@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title', 1000);
             $table->longText('description');
             $table->string('thumbnail')->default('https://dummyimage.com/720x400');
+            $table->integer('view_count');
             $table->boolean('is_featured')->nullable();
             $table->foreignId('categories_id')->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
             $table->timestamps();

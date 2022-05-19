@@ -10,7 +10,7 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $posts =    Post::with('category')->paginate(6);
+        $posts =    Post::with('category', 'comments')->paginate(6);
 
 
         return view('home.blog', compact('posts'));
@@ -18,7 +18,10 @@ class BlogController extends Controller
 
     public function singleBlog($id)
     {
+
+
         $post = Post::where('id', $id)->first();
+        $post->increment('view_count');
 
         return view('home.singleBlog', compact('post'));
     }
