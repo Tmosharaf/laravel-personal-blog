@@ -7,8 +7,7 @@
                         ? asset('images/blog/' . $post->thumbnail)
                         : $post->thumbnail }}"
                         alt="">
-                    <span
-                        class="inline-block py-1 px-2 rounded bg-indigo-50 text-indigo-500 text-xs font-medium tracking-widest">{{ $post->category->name }}</span>
+                        <a href="{{ route('blogs.by.category', $post->category->slug) }}" class="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">{{ $post->category->name }}</a>
                     <h2 class="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-4 mb-4"><a
                             href="{{ url('blogs/' . $post->id) }}">{{ $post->title }}</a></h2>
                     <p class="leading-relaxed mb-8">{{ Str::limit($post->description, 200, '...') }}</p>

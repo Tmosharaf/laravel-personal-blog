@@ -13,7 +13,7 @@
             </div>
             <div class="body flex flex-col">
                 <h4 class=""><a href="{{ route('blogs.single', $post->id) }}">{{ $post->title }}</a></h4>
-                <a href="#" class="text-sm text-green-300">{{ $post->category->name }}</a>
+                <a href="{{ route('blogs.by.category', $post->category->slug) }}" class="text-sm text-green-300">{{ $post->category->name }}</a>
                 <span class="text-gray-300 text-sm font-thin">{{ (!empty($post->created_at)) ? $post->created_at->todatestring() : '' }}</span>
 
             </div>

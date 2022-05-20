@@ -6,7 +6,7 @@
     <div class="p-5 grid grid-cols-2 gap-x-2 gap-y-3">
         @forelse ($categories as $category)
 
-        <a href="#" class="">{{ $category->name }} ({{ $category->post->count() }})</a>
+        <a href="{{ route('blogs.by.category', $category->slug ) }}" class="">{{ $category->name }} ({{ $category->post->count() }})</a>
         @empty
 
         @endforelse

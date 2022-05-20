@@ -1,7 +1,6 @@
 <?php
 
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Providers\RouteServiceProvider;
 use App\Http\Controllers\BlogController;
@@ -12,6 +11,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubscriberController;
 
+//TODO Remove this before deploy
 Route::get('login-devs', function () {
 
     auth()->login(User::first());
@@ -33,6 +33,8 @@ Route::get('/comment', [CommentController::class, 'index'])->name('comment.index
 Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
 
 Route::post('subscribe', SubscriberController::class)->name('subscribe.store');
+
+Route::get('blogs/category/{slug}', [HomeController::class, 'category'])->name('blogs.by.category');
 
 
 

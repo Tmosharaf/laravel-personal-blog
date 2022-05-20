@@ -5,7 +5,7 @@
 
         <div class="p-6">
             <div>
-                <span class="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">{{ $featured_post->category->name }}</span>
+                <a href="{{ route('blogs.by.category', $featured_post->category->slug) }}" class="text-xs font-medium text-blue-600 uppercase dark:text-blue-400">{{ $featured_post->category->name }}</a>
                 <a href="{{ url('blogs/'.$featured_post->id) }}" class="block mt-2 text-2xl font-semibold text-gray-800 transition-colors duration-200 transform dark:text-white hover:text-gray-600 hover:underline">{{ $featured_post->title }}</a>
                 <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">{{ Str::limit($featured_post->description, 400, '...') }}</p>
             </div>
