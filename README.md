@@ -1,6 +1,6 @@
-##About
+## About
 This is a basic personal blog page. Frontend made with tailwindcss.
-#features
+# features
 Email Subscription
 Featured Post
 Popular Posts
