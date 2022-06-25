@@ -8,3 +8,6 @@ This is a basic personal blog page. Frontend made with tailwindcss.
 - Post View Count
 - Post By category
 - Contact Form
+
+# email: admin@admin.com
+# password : admin12345
